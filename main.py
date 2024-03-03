@@ -11,9 +11,11 @@ tokens = (
 )
 
 # Definición de las expresiones regulares para los tokens
-t_INTEGER = r"\d+"
-t_FLOAT = r"(\d*\.\d+)|(\d+\.\d*)"
-t_SCIENTIFIC = r"\d+(\.\d*)?[eE][+-]?\d+"
+t_INTEGER = r"-?\d+"
+t_FLOAT = r"-?(\d*\.\d+)|(\d+\.\d*)"
+t_SCIENTIFIC = r"(\d*(\.\d+)?){1}[eE][+-]?\d+"
+
+
 t_BINARY = r"0[bB][01]+"
 t_OCTAL = r"0[0-7]+"
 
@@ -31,7 +33,7 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test del analizador léxico
-data = "10 420 -12 -999 0.1289 .12 -100.001 10e-1 .1E10 5E2 4e-2 0b101 0B110110 0712 0332 01121"
+data = "10 420 -12 -999 0.1289 .12 -100.001 12. 10e-1 E10 5E2 4e-2 0b101 0B110110 0712 0332 01121"
 
 lexer.input(data)
 while True:
