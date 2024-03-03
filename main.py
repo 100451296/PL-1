@@ -14,6 +14,15 @@ tokens = (
     "TRUE",  # Booleano True (caracter reservado)
     "FALSE",  # Booleano False (caracter reservado)
     "NULL",  # NULL (caracter reservado)
+    "EQUAL", # Operador ==
+    "GRATER", # Operador >
+    "GRATER_EQUAL", # Operador >=
+    "LOWER", # Operador <
+    "LOWER_EQUAL", # Operador <=
+    "OPEN_BRACE", # Llave apertura {
+    "CLOSE_BRACE", # Llave cierre }
+    "COLON", # Dos puntos :
+    "COMMA", # Coma ,
 )
 
 # Definición de las expresiones regulares para los tokens
@@ -28,6 +37,15 @@ t_QUOTED_STRING = r'"([^"\n]*)?"'
 t_TRUE = r"TR|tr"
 t_FALSE = r"FL|fl"
 t_NULL = r"NULL|null"
+t_EQUAL = r"=="
+t_GRATER = r">"
+t_GRATER_EQUAL = r">="
+t_LOWER = r"<"
+t_LOWER_EQUAL = r"<="
+t_OPEN_BRACE = r"{"
+t_CLOSE_BRACE = r"}"
+t_COLON = r":"
+t_COMMA = r","
 
 
 # Ignorar espacios y tabulaciones
@@ -45,7 +63,7 @@ lexer = lex.lex()
 
 # Test del analizador léxico
 data = '10 420 -12 -999 0.1289 .12 -100.001 12. 10e-1 10.1E10 1.E10 5E2 .1.1E10  E54 4e-2 0b101 0B110110 B0 0b 0b010 0712 0332 01121 \
-0xA0F 0X0AF _a0 a_0 Aa 0_a "hola" "" TR FL tr fl TREX trex flex "TR EX" null NULL nulla '
+0xA0F 0X0AF _a0 a_0 Aa 0_a "hola" "" TR FL tr fl TREX trex flex "TR EX" null NULL nulla "1==1" 1==1 1>2 1>=2 1<2 1<=1 { } : , {hola:"adios"==2}'
 
 
 lexer.input(data)
