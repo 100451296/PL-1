@@ -67,6 +67,6 @@ def p_error(p):
 parser = yacc.yacc(debug=True)
 
 # Ejemplo de uso
-data = "1 + 1 + 2"
+data = "1 + 1 + 2 + - +"
 result = parser.parse(data)
 print("Resultado:", result)
