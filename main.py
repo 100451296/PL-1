@@ -1,4 +1,4 @@
-from lexer import scanner
+from ajson_lexer import scanner
 
 # Test del analizador léxico
 data = '10 420 -12 -999 0.1289 .12 -100.001 12. 10e-1 10.1E10 1.E10 5E2 .1.1E10  E54 4e-2 0b101 0B110110 B0 0b 0b010 0712 0332 01121 \
