@@ -136,8 +136,8 @@ def t_INTEGER(t):
     return t
 
 
-# Ignorar espacios y tabulaciones
-t_ignore = " \t"
+# Ignorar espacios, tabulaciones y saltos de línea
+t_ignore = " \t\n"
 
 
 # Regla para manejar el error léxico
