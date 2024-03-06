@@ -17,10 +17,14 @@ def p_array(p):
 
 
 def p_objects(p):
-    """objects : object COMMA object 
-    | object"""
-    if len(p) == 2:
+    """objects : object COMMA objects
+    | object
+    | object COMMA objects COMMA
+    | object COMMA
+    """
+    if len(p) in [2, 3]:
         p[0] = [p[1]]
+
     else:
         p[0] = [p[1]] + p[3]
 

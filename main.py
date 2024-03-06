@@ -9,8 +9,29 @@ RESET = "\033[0m"
 
 def print_formatted(key, value, prefix=""):
     if isinstance(value, list):
-        for v in value:
-            print_formatted(key + "." + str(v[0]), str(v[1]), prefix)
+        for i, v in enumerate(value):
+            # print(GREEN, v, RESET)
+            if isinstance(v, tuple):
+                print_formatted(f"{key}.{v[0]}", v[1], prefix)
+
+            elif isinstance(v, list):
+                print_formatted(f"{key}.{i}", v, prefix)
+            else:
+                print("{ ", f"{prefix}{key}{i}: {v}", " }")
+    else:
+        print("{ ", f"{prefix}{key}: {value}", " }")
+
+
+def print_formatted_array(key, value, prefix=""):
+    if isinstance(value, list):
+        for i, v in enumerate(value):
+            if isinstance(v, tuple):
+                print_formatted_array(f"{key}.{i}.{v[0]}", v[1], prefix)
+
+            elif isinstance(v, list):
+                print_formatted_array(f"{key}.{i}.", v, prefix)
+            else:
+                print("{ ", f"{prefix}{key}.{i}.: {v}", " }")
     else:
         print("{ ", f"{prefix}{key}: {value}", " }")
 

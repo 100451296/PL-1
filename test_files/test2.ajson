@@ -18,5 +18,9 @@
       "grater": 5 > 3,
       "grater_equal": 0xFF >= 0b111011,
       "lower": 077 < 64,
-      "lower_equal": 273 <= 0b1011011100000000
+      "lower_equal": 273 <= 0b1011011100000000,
+      "array" : [
+        {a:1, b:2},
+        {c:3},
+    ]
   }
