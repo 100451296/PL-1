@@ -19,7 +19,7 @@ data = str()
 
 # Tratamiento de argumentos
 if len(sys.argv) < 2:
-    print(f"Uso: python main input_file")
+    print(f"Uso: python main.py input_file")
     sys.exit(0)
 input_file = sys.argv[1]
 

@@ -22,6 +22,8 @@ tokens = (
     "CLOSE_BRACE",  # Llave cierre }
     "COLON",  # Dos puntos :
     "COMMA",  # Coma ,
+    "OPEN_BRACKET", # Corchete apertura [
+    "CLOSE_BRACKET", # Corchete cierre ]
 )
 
 
@@ -124,6 +126,16 @@ def t_COMMA(t):
     return t
 
 
+def t_OPEN_BRACKET(t):
+    r"\["
+    return t
+
+
+def t_CLOSE_BRACKET(t):
+    r"]"
+    return t 
+
+
 def t_FLOAT(t):
     r"-?(\d*\.\d+)|(\d+\.\d*)"
     t.value = float(t.value)
@@ -148,3 +160,12 @@ def t_error(t):
 
 # Construcción del analizador léxico
 scanner = lex.lex()
+
+if __name__ == "__main__":
+    data = "[]"
+    scanner.input(data)
+    while True:
+        tok = scanner.token()
+        if not tok:
+            break  # No hay más tokens
+        print(tok)

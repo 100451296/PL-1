@@ -11,6 +11,20 @@ def p_object(p):
     p[0] = p[2] if p[2] != "}" else EMPTY
 
 
+def p_array(p):
+    """array : OPEN_BRACKET objects CLOSE_BRACKET"""
+    p[0] = p[2]
+
+
+def p_objects(p):
+    """objects : object COMMA object 
+    | object"""
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = [p[1]] + p[3]
+
+
 def p_pairs(p):
     """pairs : pair COMMA pairs
     | pair"""
@@ -22,7 +36,8 @@ def p_pairs(p):
 
 def p_pair(p):
     """pair : key COLON value
-    | key COLON comparation"""
+    | key COLON comparation
+    | key COLON array"""
     p[0] = (p[1], p[3])
 
 
