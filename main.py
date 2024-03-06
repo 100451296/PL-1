@@ -1,16 +1,43 @@
 from ajson_lexer import scanner
+from ajson_parser import parser, EMPTY
+import sys
 
-# Test del analizador léxico
-data = '10 420 -12 -999 0.1289 .12 -100.001 12. 10e-1 10.1E10 1.E10 5E2 .1.1E10  E54 4e-2 0b101 0B110110 B0 0b 0b010 0712 0332 01121 \
-0xA0F 0X0AF _a0 a_0 Aa 0_a "hola" "" TR FL tr fl TREX trex flex "TR EX" null NULL nulla "1==1" 1==1 1>2 1>=2 1<2 1<=1 { } : , {hola:2==2}'
+# Código de colores ANSI
+GREEN = "\033[92m"
+RESET = "\033[0m"
 
-# Abrir el archivo y leer su contenido
-with open('example.ajson', 'r') as file:
-    data = file.read()
 
-scanner.input(data)
-while True:
-    tok = scanner.token()
-    if not tok:
-        break
-    print(tok)
+def print_formatted(key, value, prefix=""):
+    if isinstance(value, list):
+        for v in value:
+            print_formatted(key + "." + str(v[0]), str(v[1]), prefix)
+    else:
+        print("{ ", f"{prefix}{key}: {value}", " }")
+
+
+data = str()
+
+# Tratamiento de argumentos
+if len(sys.argv) < 2:
+    print(f"Uso: python main input_file")
+    sys.exit(0)
+input_file = sys.argv[1]
+
+# Lectura de archivo de entrada
+try:
+    # Abrir el archivo y leer su contenido
+    with open(input_file, "r") as file:
+        data = file.read()
+except FileNotFoundError:
+    print(f"El archivo {input_file} no pudo ser encontrado.")
+    sys.exit(0)
+
+# Ejecucion del analizador
+parsed_data = parser.parse(data)
+
+if parsed_data == EMPTY:
+    print(">> FICHERO AJSON VACIO", GREEN + input_file + RESET)
+elif parsed_data:
+    print(">> FICHERO AJSON", GREEN + input_file + RESET)
+    for pair in parsed_data:
+        print_formatted(pair[0], pair[1])

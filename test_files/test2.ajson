@@ -1,0 +1,22 @@
+{
+      "this is": "AJSON",
+      keys_sometimes_dont_need_quotes: "values always do",
+      "integer": 123,
+      "float": 3.14,
+      "hexadecimal": 0xABC,
+      "scientific": 1.23e10,
+      "octal": 0123,
+      "binary": 0b1010,
+      "null": null,
+      "true": tr,
+      "false": fl,
+      "nested_object": {
+          "key1": "value1",
+          "key2": 42
+      },
+      "equal": 1e-1 == 0.1,
+      "grater": 5 > 3,
+      "grater_equal": 0xFF >= 0b111011,
+      "lower": 077 < 64,
+      "lower_equal": 273 <= 0b1011011100000000
+  }
