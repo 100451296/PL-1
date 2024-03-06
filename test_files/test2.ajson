@@ -4,7 +4,7 @@
       "integer": 123,
       "float": 3.14,
       "hexadecimal": 0xABC,
-      "scientific": 1.23e10,
+      "scientific": 1.23e4,
       "octal": 0123,
       "binary": 0b1010,
       "null": null,
