@@ -8,13 +8,21 @@ RESET = "\033[0m"
 
 
 def print_formatted(key, value, prefix=""):
+    """
+    Imprime las tuplas clave:valor, se llama de manera de recursiva dado que la profundidad del AJSON no es conocida.
+    En caso de detectar dos listas anidadas consecutivamente, se ha encontrado un array, por lo que añade el indice
+    del objeto como parte de la clave.
+    """
     if isinstance(value, list):
         for i, v in enumerate(value):
+            # Objeto
             if isinstance(v, tuple):
                 print_formatted(f"{key}.{v[0]}", v[1], prefix)
+            # Lista detectada
             elif isinstance(v, list):
                 print_formatted(f"{key}.{i}", v, prefix)
     else:
+        # Caso base (objeto)
         print("{ ", f"{prefix}{key}: {value}", " }")
 
 
@@ -38,9 +46,11 @@ except FileNotFoundError:
 # Ejecucion del analizador
 parsed_data = parser.parse(data)
 
+# Caso AJSON vacio
 if parsed_data == EMPTY:
-    print(">> FICHERO AJSON VACIO", GREEN + input_file + RESET)
+    print(">> FICHERO AJSON VACIO", input_file)
+# Imprime las tuplas
 elif parsed_data:
-    print(">> FICHERO AJSON", GREEN + input_file + RESET)
+    print(">> FICHERO AJSON", input_file)
     for pair in parsed_data:
         print_formatted(pair[0], pair[1])

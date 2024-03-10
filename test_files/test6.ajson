@@ -1,0 +1,9 @@
+{
+    "integer": -123,
+    "float": .456,
+    "scientific": 1.23e-4,
+    "binary": 0b1101,
+    "octal": 072,
+    "hexadecimal": 0xDEADBEEF,
+    "error": .1e-5
+}

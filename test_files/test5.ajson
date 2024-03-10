@@ -1,0 +1,21 @@
+{
+    "simple_string": "Hello, AJSON!",
+    "integer": 42,
+    "float": 3.14159,
+    "hexadecimal": 0x1A3,
+    "scientific": 2.34e5,
+    "octal": 0754,
+    "binary": 0b101001,
+    "null": null,
+    "true": TR,
+    "false": FL,
+    "nested_object": {
+        "nested_key": "nested_value",
+        "nested_number": 123
+    },
+    "array_of_objects": [
+        {"object_1_key": "object_1_value"},
+        {"object_2_key": 2},
+         {"object_3_key": 3}
+    ]
+}
